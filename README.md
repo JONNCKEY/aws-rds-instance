@@ -80,6 +80,7 @@ Desplegar una **instancia de Microsoft SQL Server en Amazon RDS**, aprovechando 
 
 - Se creó exitosamente una instancia **Amazon RDS (SQL Server Express Edition)** accesible mediante el puerto `1433`.
 - La infraestructura está lista para integrarse con aplicaciones o clientes SQL externos.
+- Toda la configuración está versionada en aws-infra.json para referencia futura.
 
 ---
 
@@ -90,3 +91,4 @@ Este repositorio está organizado de la siguiente manera para mantener todos los
 - `README.md`: Explica el objetivo del proyecto, los pasos realizados y resultados.
 - `diagrams/`: Contiene diagramas de arquitectura o esquemas de la infraestructura.
 - `screenshots/`: Almacena screenshots de la configuración en AWS para referencia visual.
+- `docs/aws-infra.json`: Documentación completa de la infraestructura existente en formato JSON.

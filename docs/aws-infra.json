@@ -1,0 +1,129 @@
+{
+  "VPC": {
+    "VpcId": "vpc-05eff9f22e9083012",
+    "Name": "Lab-VPC",
+    "CidrBlock": "10.0.0.0/16",
+    "DNSResolution": "Enabled",
+    "DNSHostnames": "Enabled",
+    "Tenancy": "default",
+    "State": "Available",
+    "DefaultVPC": false,
+    "MainNetworkACL": "acl-01593535acf5fbd89",
+    "MainRouteTable": "rtb-036d13a9db062053d",
+    "DHCPOptionSet": "dopt-0f008dc015ebd818b",
+    "OwnerId": "749059848282"
+  },
+  "Subnets": [
+    {
+      "SubnetId": "subnet-016667d4e23990f3c",
+      "Name": "Public-Subnet-1",
+      "AvailabilityZone": "us-east-1a",
+      "CidrBlock": "10.0.0.0/24",
+      "AutoAssignPublicIPv4": true,
+      "NetworkACL": "acl-01593535acf5fbd89",
+      "RouteTable": "rtb-00967147e369e30dd",
+      "State": "Available"
+    },
+    {
+      "SubnetId": "subnet-0ecf0f8edc4919c59",
+      "Name": "Public-Subnet-2",
+      "AvailabilityZone": "us-east-1b",
+      "CidrBlock": "10.0.2.0/24",
+      "AutoAssignPublicIPv4": true,
+      "NetworkACL": "acl-01593535acf5fbd89",
+      "RouteTable": "rtb-00967147e369e30dd",
+      "State": "Available"
+    }
+  ],
+  "RouteTables": [
+    {
+      "RouteTableId": "rtb-00967147e369e30dd",
+      "Name": "Public-RouteTable",
+      "VPC": "vpc-05eff9f22e9083012",
+      "Main": false,
+      "Routes": [
+        { "DestinationCidrBlock": "10.0.0.0/16", "Target": "local", "Status": "Active", "Propagated": false, "RouteOrigin": "manual" },
+        { "DestinationCidrBlock": "0.0.0.0/0", "Target": "igw-08941a109f790da7f", "Status": "Active", "Propagated": false, "RouteOrigin": "manual" }
+      ],
+      "AssociatedSubnets": [
+        "subnet-016667d4e23990f3c",
+        "subnet-0ecf0f8edc4919c59"
+      ]
+    }
+  ],
+  "InternetGateways": [
+    {
+      "InternetGatewayId": "igw-08941a109f790da7f",
+      "Name": "Lab-IGW",
+      "State": "Attached",
+      "AttachedVPC": "vpc-05eff9f22e9083012",
+      "OwnerId": "749059848282"
+    }
+  ],
+  "SecurityGroups": [
+    {
+      "SecurityGroupId": "sg-081a30c1d87c0139c",
+      "Name": "RDS-SecurityGroup",
+      "Description": "Inbound-All-MSSQL",
+      "VPC": "vpc-05eff9f22e9083012",
+      "OwnerId": "749059848282",
+      "InboundRules": [
+        { "Type": "All traffic", "Protocol": "All", "PortRange": "All", "Source": "0.0.0.0/0" },
+        { "Type": "MSSQL", "Protocol": "TCP", "PortRange": "1433", "Source": "0.0.0.0/0" }
+      ],
+      "OutboundRules": "2 Permission entries"
+    }
+  ],
+  "DBSubnetGroups": [
+    {
+      "DBSubnetGroupName": "rds-subnetgroup",
+      "Description": "Subnet group for RDS",
+      "VPC": "vpc-05eff9f22e9083012",
+      "Subnets": [
+        { "SubnetId": "subnet-0ecf0f8edc4919c59", "Name": "Public-Subnet-2", "AvailabilityZone": "us-east-1b", "CidrBlock": "10.0.2.0/24" },
+        { "SubnetId": "subnet-016667d4e23990f3c", "Name": "Public-Subnet-1", "AvailabilityZone": "us-east-1a", "CidrBlock": "10.0.0.0/24" }
+      ]
+    }
+  ],
+  "RDSInstances": [
+    {
+      "DBInstanceIdentifier": "lab-database",
+      "Engine": "SQL Server Express Edition",
+      "EngineVersion": "15.00.4440.1.v1",
+      "DBInstanceClass": "db.t3.micro",
+      "AvailabilityZone": "us-east-1b",
+      "VPC": "vpc-05eff9f22e9083012",
+      "SubnetGroup": "rds-subnetgroup",
+      "Subnets": [
+        "subnet-016667d4e23990f3c",
+        "subnet-0ecf0f8edc4919c59"
+      ],
+      "SecurityGroups": [
+        "sg-081a30c1d87c0139c"
+      ],
+      "PubliclyAccessible": true,
+      "Endpoint": "lab-database.c6f24w4gsssb.us-east-1.rds.amazonaws.com",
+      "Port": 1433,
+      "Storage": {
+        "Type": "General Purpose SSD (gp2)",
+        "Size": "20 GiB",
+        "AutoScaling": true,
+        "MaxStorageThreshold": "1000 GiB",
+        "Encryption": true,
+        "KMSKey": "b2662c0a-023b-4cdc-a543-ca18b26fa652"
+      },
+      "Monitoring": {
+        "PerformanceInsights": true,
+        "EnhancedMonitoring": false,
+        "ActivityStream": "Stopped"
+      },
+      "MasterUsername": "admin",
+      "DBName": null,
+      "LicenseModel": "License Included",
+      "Collation": "SQL_Latin1_General_CP1_CI_AS",
+      "DeletionProtection": false,
+      "ARN": "arn:aws:rds:us-east-1:749059848282:db:lab-database",
+      "ResourceId": "db-72EHJDTGQGA3ZEKYARLYUPDS3E"
+    }
+  ]
+}

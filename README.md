@@ -1,54 +1,54 @@
-# Creación de una Instancia RDS
+# RDS Instance Creation
 
-Descripción: Este proyecto implementa una **Instancia RDS (SQL Server)** dentro de una VPC previamente configurada en AWS.  
-La solución incluye la creación de un **Security Group** y un **DB Subnet Group**, y culmina con el despliegue de la base de datos en Amazon RDS.
-
----
-
-## 📌 Objetivo
-Desplegar una **instancia de Microsoft SQL Server en Amazon RDS**, aprovechando una infraestructura existente en AWS (VPC con subnets, route table e internet gateway).
+**Description**: This project implements an **RDS Instance (SQL Server)** within a preconfigured VPC in AWS.  
+The solution includes the creation of a **Security Group** and a **DB Subnet Group**, ending with the deployment of the database in Amazon RDS.
 
 ---
 
-## 🏗️ Arquitectura
-
-- VPC existente: **Lab-VPC**
-- Recursos creados en este proyecto:
-  - **Security Group** para RDS
-  - **DB Subnet Group** para RDS
-  - **Instancia RDS** (SQL Server Express Edition)
-
-![Diagrama de arquitectura inicial](./diagrams/diagram-1.png) 
+## 📌 Objective
+Deploy a **Microsoft SQL Server instance on Amazon RDS**, leveraging an existing AWS infrastructure (VPC with subnets, route table, and internet gateway).
 
 ---
 
-## 🔐 Creación del Security Group
+## 🏗️ Architecture
 
-1. Ir a **VPC → Security Groups → Crear grupo de seguridad**.
-2. Configuración:
-   - **Nombre**: `RDS-SecurityGroup`
+- Existing VPC: **Lab-VPC**
+- Resources created in this project:
+  - **Security Group** for RDS
+  - **DB Subnet Group** for RDS
+  - **RDS Instance** (SQL Server Express Edition)
+
+![Initial architecture diagram](./diagrams/diagram-1.png) 
+
+---
+
+## 🔐 Security Group Creation
+
+1. Go to **VPC → Security Groups → Create security group**.
+2. Configuration:
+   - **Name**: `RDS-SecurityGroup`
    - **VPC**: `Lab-VPC`
-3. Reglas de entrada:
-   - Todo el tráfico desde `0.0.0.0/0`
-   - MSSQL (Puerto `1433`, TCP) desde `0.0.0.0/0`
+3. Inbound rules:
+   - All traffic from `0.0.0.0/0`
+   - MSSQL (Port `1433`, TCP) from `0.0.0.0/0`
 
 ---
 
-## 🌐 Creación del Subnet Group
+## 🌐 Subnet Group Creation
 
-1. En la consola de AWS, ir a **RDS → Subnet Groups → Create DB Subnet Group**.
-2. Configuración:
+1. In the AWS Console, go to **RDS → Subnet Groups → Create DB Subnet Group**.
+2. Configuration:
    - **Name**: `RDS-SubnetGroup`
    - **VPC**: `Lab-VPC`
    - **Availability Zones**: `us-east-1a`, `us-east-1b`
-   - **Subnets**: Seleccionar subnets correspondientes
+   - **Subnets**: Select the corresponding subnets
 
 ---
 
-## 💾 Creación de la Instancia RDS
+## 💾 RDS Instance Creation
 
-1. Ir a **RDS → Databases → Create Database**.
-2. Configuración:
+1. Go to **RDS → Databases → Create Database**.
+2. Configuration:
    - **Creation method**: `Standard create`
    - **Engine type**: `Microsoft SQL Server`
    - **Edition**: `SQL Server Express Edition`
@@ -66,45 +66,45 @@ Desplegar una **instancia de Microsoft SQL Server en Amazon RDS**, aprovechando 
 
 ---
 
-## ✅ Validación
+## ✅ Validation
 
-- La **instancia RDS** cambia a estado `Available`.
-- Se obtiene el **Endpoint** para conexión.
-- Se confirma la asociación con **VPC, Subnet Group y Security Group**.
+- The **RDS instance** changes to the `Available` state.
+- The **Endpoint** is retrieved for connection.
+- Association with **VPC, Subnet Group, and Security Group** is confirmed.
 
-![Diagrama de arquitectura final](./diagrams/diagram-2.png) 
+![Final architecture diagram](./diagrams/diagram-2.png) 
 
 ---
 
-## 📄 Documentación programática (JSON)
+## 📄 Programmatic Documentation (JSON)
 
-Toda la infraestructura se encuentra documentada en formato JSON para referencia y versionamiento como se muestra a continuación:
+The entire infrastructure is documented in JSON format for reference and versioning, as shown below:
 
-- VPC completa
-- Subnets con CIDR y AZ
-- Route Table con rutas y asociaciones
+- Complete VPC
+- Subnets with CIDR and AZ
+- Route Table with routes and associations
 - Internet Gateway
-- Security Group de la RDS con reglas inbound/outbound
+- RDS Security Group with inbound/outbound rules
 - DB Subnet Group
-- Instancia RDS con endpoint, puerto, subnets, SG y almacenamiento
+- RDS Instance with endpoint, port, subnets, SG, and storage
 
-Archivo: [`aws-infra.json`](./docs/aws-infra.json)
-
----
-
-## 🎯 Resultados
-
-- Se creó exitosamente una instancia **Amazon RDS (SQL Server Express Edition)** accesible mediante el puerto `1433`.
-- La infraestructura está lista para integrarse con aplicaciones o clientes SQL externos.
-- Toda la configuración está versionada y documentada en `aws-infra.json`.
+File: [`aws-infra.json`](./docs/aws-infra.json)
 
 ---
 
-## 📂 Estructura del repositorio
+## 🎯 Results
 
-Este repositorio está organizado de la siguiente manera para mantener todos los recursos del proyecto ordenados:
+- Successfully created an **Amazon RDS (SQL Server Express Edition)** instance accessible via port `1433`.
+- The infrastructure is ready to be integrated with applications or external SQL clients.
+- All configuration is versioned and documented in `aws-infra.json`.
 
-- `README.md`: Explica el objetivo del proyecto, los pasos realizados y resultados.
-- `diagrams/`: Contiene diagramas de arquitectura o esquemas de la infraestructura.
-- `screenshots/`: Almacena screenshots de la configuración en AWS para referencia visual.
-- `docs/aws-infra.json`: Documentación completa de la infraestructura existente en formato JSON.
+---
+
+## 📂 Repository Structure
+
+This repository is organized as follows to keep all project resources in order:
+
+- `README.md`: Explains the project objective, performed steps, and results.
+- `diagrams/`: Contains architecture diagrams or infrastructure schemas.
+- `screenshots/`: Stores screenshots of the AWS configuration for visual reference.
+- `docs/aws-infra.json`: Complete documentation of the existing infrastructure in JSON format.

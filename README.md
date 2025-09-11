@@ -1,6 +1,7 @@
 # RDS Instance Creation
 
-**Description**: This project implements an **RDS Instance (SQL Server)** within a preconfigured VPC in AWS.  
+This project implements an **RDS Instance (SQL Server)** within a preconfigured VPC in AWS.  
+
 The solution includes the creation of a **Security Group** and a **DB Subnet Group**, ending with the deployment of the database in Amazon RDS.
 
 ---
@@ -92,14 +93,6 @@ File: [`aws-infra.json`](./docs/aws-infra.json)
 
 ---
 
-## 🎯 Results
-
-- Successfully created an **Amazon RDS (SQL Server Express Edition)** instance accessible via port `1433`.
-- The infrastructure is ready to be integrated with applications or external SQL clients.
-- All configuration is versioned and documented in `aws-infra.json`.
-
----
-
 ## 📂 Repository Structure
 
 This repository is organized as follows to keep all project resources in order:
@@ -108,3 +101,11 @@ This repository is organized as follows to keep all project resources in order:
 - `diagrams/`: Contains architecture diagrams or infrastructure schemas.
 - `screenshots/`: Stores screenshots of the AWS configuration for visual reference.
 - `docs/aws-infra.json`: Complete documentation of the existing infrastructure in JSON format.
+
+---
+
+## 🎯 Key Takeaways
+
+- Successfully created an **Amazon RDS (SQL Server Express Edition)** instance accessible via port `1433`.
+- The infrastructure is ready to be integrated with applications or external SQL clients.
+- All configuration is versioned and documented in `aws-infra.json`.
